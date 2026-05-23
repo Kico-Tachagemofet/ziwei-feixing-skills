@@ -112,6 +112,14 @@ Step 0.7 产出 `innate-body.md`，是所有 topic 的共享输入:
 
 Finding audit 只报告问题+标严重度，不解释为什么可以放过。禁止写"但不影响判断"、"短卡已足够"等辩护。
 
+## 已知问题
+
+### LLM 偷懒不读 deep card
+
+不管规则里怎么写"必读"、加粗、加警告符号，调了三天三夜，LLM 仍然会主动跳过 deep card 直接用短卡出断语（也有可能是 Anthropic 把算力偷去给 Mythos 了）。这个问题**非常致命**——deep card 是词条交叉 (Phase C) 的唯一原料来源，不读 deep = 断语全靠通论堆砌，直接影响准确度。
+
+**目前比较有效的解决办法**: 跑完 finding 后调 `ziwei-finding-audit` 审计，audit 会明确标出哪些 deep 没读。把 audit 结果贴回去让它补做，补完之后产出质量会有明显提升。本质上是用审计做第二遍强制执行。
+
 ## 许可
 
 本 skill 系统的规则和 pipeline 设计为原创作品。
