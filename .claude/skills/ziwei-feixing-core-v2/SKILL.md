@@ -1,4 +1,4 @@
-﻿---
+---
 name: ziwei-feixing-core-v2
 description: 紫微斗数飞星派核心 skill (纯许铨仁体系)。主模式=Stage 2 象核驱动 finding production；前置缺失时自动补跑 Step 0 + 调用 topic-lens/source-lookup。输入 chart-stage1 即可启动，缺失的中间产物会按顺序恢复。质量审计走 ziwei-finding-audit。
 ---
@@ -40,7 +40,7 @@ Finding 不能当思考单位，只能当输出单位。
 | **Tier 4 deep** | **Stage 2 进入即加载** | 太极点相关宫位 combo/star/flow deep = 必读项 |
 | WTZ addon | Stage 2 有小星时 | 太极+对宫+落宫小星→wtz 短+deep |
 
-Source-cards 路径: `source-cards/`
+Source-cards 路径: `E:\My Grimoire\Codex\紫微斗数\source-cards\`
 
 ### Tier 1 core-always 必读文件
 
@@ -71,6 +71,8 @@ Source-cards 路径: `source-cards/`
 | 文件 | 来源 | 必需 |
 |---|---|---|
 | chart-stage1.md | ziwei-reader | 是 |
+| chart-facts.yaml | Stage 1.5 | 是 |
+| cross-topic-structural.md | Stage 1.5 | 是 |
 | sihua-transaction-map.md | Step 0 | 是 |
 | **innate-body.md** | **Step 0.7** | **是** |
 | Topic Lens Packet | ziwei-topic-lens | 是 |
@@ -79,17 +81,18 @@ Source-cards 路径: `source-cards/`
 
 ### 前置缺失恢复 (不可跳过)
 
-进入 Stage 2 前检查上述 4 个必需输入。缺失时**按顺序补跑**，不可跳过或报错停止:
+进入 Stage 2 前检查上述必需输入。缺失时**按顺序补跑**，不可跳过或绕过:
 
 | 缺失 | 恢复动作 |
 |---|---|
 | chart-stage1.md | 停止。提示用户先调 ziwei-reader 起盘 |
-| sihua-transaction-map.md | **自行执行 Step 0**: 读 chart-stage1 + `rules/step0-schema.md`，产 `sihua-transaction-map.md` |
+| chart-facts.yaml / cross-topic-structural.md | **自行执行 Stage 1.5**: 读 chart-stage1，做全盘宫象星合参+chart-facts 萃取+cross-topic 结构分析。**不可绕过直接用 chart-stage1 代替。** |
+| sihua-transaction-map.md | **自行执行 Step 0**: 读 chart-stage1 + chart-facts + `rules/step0-schema.md`，产 `sihua-transaction-map.md` |
 | innate-body.md | **自行执行 Step 0.7**: 读 chart-stage1 + transaction-map + `rules/step07-innate-body.md`，产 `innate-body.md`。**命迁 combo deep 必读。** |
 | Topic Lens Packet | **调用 ziwei-topic-lens**: 用 Skill tool invoke，传入 topic + chart-stage1 + transaction-map + chart-facts |
 | Source Packet | **调用 ziwei-source-lookup**: 用 Skill tool invoke，传入 chart-facts + topic_tag |
 
-恢复顺序固定: Step 0 → **Step 0.7** → topic-lens → source-lookup → Stage 2c。不可乱序。
+恢复顺序固定: Stage 1.5 → Step 0 → **Step 0.7** → topic-lens → source-lookup → Stage 2c。不可乱序。
 
 ⚠️ Step 0 和 Step 0.7 由本 skill 自行执行。topic-lens 和 source-lookup 必须通过 Skill tool invoke 调用对应 skill，不可在本 skill 内直接读它们的 rules/ 子文件代替。
 
