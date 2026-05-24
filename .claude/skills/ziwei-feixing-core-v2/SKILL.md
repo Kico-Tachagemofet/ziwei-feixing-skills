@@ -59,7 +59,7 @@ Source-cards 路径: `source-cards/` (repo-relative; publish 仓库已含完整 
 
 本 skill = Stage 2c (象核構建 + Finding Production)。
 上游: reader → Stage 1.5 → Step 0 → topic-lens → source-lookup → **本 skill**
-下游: **ziwei-finding-audit** (质量审计) → Stage 3 (composite) → Stage 4 (render)
+下游: **ziwei-finding-audit** (Stage 2 质量审计) → Stage 3 composition (本 skill composition mode, 见 `rules/stage3-composition.md`) → ziwei-finding-audit (Stage 3 audit) → Stage 4 ziwei-render (必读 composition.md 作骨架)
 
 ## 职责
 

@@ -1,13 +1,16 @@
 ---
 name: ziwei-finding-audit
-description: 紫微斗数飞星派 finding 质量审计（检察官模式）。Stage 2 finding 产出后执行。A层程序合规 + B层内容质量，输出 PASS/FAIL 审计报告。审计只报告问题+标严重度，不解释为什么可以放过——放不放过是 用户的决定。Use when user says '审计 finding'、'quality check'、'检查质量' 或 Stage 2 finding 完成后。
+description: 紫微斗数飞星派 finding/composition 质量审计（检察官模式）。Stage 2 finding 产出后或 Stage 3 composition 产出后执行。A层程序合规 + B层内容质量，输出 PASS/FAIL 审计报告。审计只报告问题+标严重度，不解释为什么可以放过——放不放过是 用户 的决定。Use when 用户 says '审计 finding'、'audit composition'、'quality check'、'检查质量' 或 Stage 2/3 产出后。
 ---
 
-# 紫微斗数 Finding 质量审计
+# 紫微斗数 Finding/Composition 质量审计
 
+> v2.1 (2026-05-24) — 扩展支持 Stage 3 composition audit (使用 stage3-composition.md A+B checklist) + 加 audit 闭环纪律段
 > v2.0 (2026-05-23) — 双层审计: A层程序合规 + B层内容质量。检察官模式: 只报告问题，不辩护。
 > v1.0 (2026-05-23) — 从 ziwei-feixing-core-v2 v3.3 核心纪律拆出
-> Pipeline 位置: Stage 2c 之后、Stage 3 之前
+> Pipeline 位置:
+> - **Stage 2 finding audit**: Stage 2c 之后、Stage 3 之前 (用本 SKILL 的 A1-A4 + B1-B6 checklist)
+> - **Stage 3 composition audit**: Stage 3 之后、Stage 4 之前 (用 stage3-composition.md 的 A1-A4 + B1-B4 checklist)
 
 ## 审计定位: 检察官，不是辩护律师
 
@@ -17,7 +20,7 @@ description: 紫微斗数飞星派 finding 质量审计（检察官模式）。S
 - **禁止**写"但这不影响判断"、"短卡已足够"、"不构成误判风险"、"在当前范围内成立"
 - **禁止**替 finding 做辩护、找理由、重新解释规则边界
 - 发现问题 → 写问题是什么 + 违反了哪条规则 + 建议修正动作。到此为止。
-- 问题严不严重由 用户判断，不由审计判断
+- 问题严不严重由 用户 判断，不由审计判断
 
 ## 职责
 
@@ -26,6 +29,7 @@ description: 紫微斗数飞星派 finding 质量审计（检察官模式）。S
 
 ## 输入
 
+### Stage 2 finding audit 模式
 | 文件 | 必需 |
 |---|---|
 | topic-findings/<slug>.md | 是 — 审计对象 |
@@ -35,6 +39,14 @@ description: 紫微斗数飞星派 finding 质量审计（检察官模式）。S
 | Topic Lens Packet | 是 — 验证 Taiji Lock / 覆盖度 |
 | Topic Reference (如有) | 参照 `ziwei-topic-lens/references/` |
 | Finding Schema | 参照 `ziwei-feixing-core-v2/rules/finding-schema.md` |
+
+### Stage 3 composition audit 模式 (v2.1 新增)
+| 文件 | 必需 |
+|---|---|
+| composition.md | 是 — 审计对象 |
+| 所有 topic-findings/*.md | 是 — fidelity 验证 (composition 不引入 Stage 2 没说过的新断语) |
+| Composition Schema | 参照 `ziwei-feixing-core-v2/rules/stage3-composition.md` (A1-A4 + B1-B4 checklist) |
+| subject-context.md | 可选 — 验证 ✨ subject-context informed mark 完整性 |
 
 ---
 
@@ -110,7 +122,7 @@ description: 紫微斗数飞星派 finding 质量审计（检察官模式）。S
 ### B4. Confidence vs Deep 一致性 (A2 的加强版)
 
 - [ ] high confidence finding 是否全部有对应 deep card 已读？有任何一条 high + deep 未读 = BLOCKER
-- [ ] finding 声称"短卡已足够" = 自动标 WARNING (审计不判断够不够，让 用户看)
+- [ ] finding 声称"短卡已足够" = 自动标 WARNING (审计不判断够不够，让 用户 看)
 
 ### B5. 四化取象宫象合参
 
@@ -140,7 +152,37 @@ description: 紫微斗数飞星派 finding 质量审计（检察官模式）。S
 | 只有 WARNING，无 BLOCKER | PASS_WITH_WARNINGS |
 | 全部通过 | PASS |
 
-⚠️ **PASS_WITH_WARNINGS 不等于"可以不管"。** 每条 WARNING 都需要 用户确认是否接受。
+⚠️ **PASS_WITH_WARNINGS 不等于"可以不管"。** 每条 WARNING 都需要 用户 确认是否接受。
+
+---
+
+## ⚠️ Audit 闭环纪律 (v2.1 新增, 从 Z08-kico-mom 实践)
+
+**FAIL 必修, 不允许 force pass 进下一 stage**。
+
+### 闭环流程
+
+1. Audit 输出 FAIL + BLOCKER 清单
+2. 主 agent 按清单逐条修 (读 deep / 加 §0 / 改框架 / 补 IK / 等)
+3. 修完**再调 audit skill 重审**, 不依赖记忆/感觉
+4. PASS 或 PASS_WITH_WARNINGS (用户 接受) 后再进下一 stage
+
+### 反例 (禁止)
+
+- ❌ Stage 2 audit FAIL → 觉得 BLOCKER "不重要" → 直接进 Stage 3
+- ❌ Audit 输出"短卡已足够" / "在当前范围内成立" 等辩护性陈述 → 检察官原则禁止
+- ❌ BLOCKER 跨 stage 累积 → 最终 render 出来才发现一堆系统性问题
+
+### 正例 (Z08 实践)
+
+- ✅ character audit FAIL (2 BLOCKER) → 修 §0×4 + into-ming flow deep → 再 audit → PASS
+- ✅ partnership audit FAIL (3 BLOCKER) → 修 flow deep + Phase A + 凶锚段重判 → 再 audit → PASS
+- ✅ composition audit PASS_WITH_WARNINGS (3 WARNING) → 修一致性 + subject-context mark + 措辞 → 0 WARNING
+
+### 适用范围
+
+不只 Stage 2 finding audit, **Stage 3 composition audit** + 任何后续 stage 的 audit 都遵循同纪律。
+本 skill (ziwei-finding-audit) 可用于 Stage 3 composition audit, 用 stage3-composition.md 的 A+B checklist 代替本 SKILL 的 A+B。
 
 ---
 
