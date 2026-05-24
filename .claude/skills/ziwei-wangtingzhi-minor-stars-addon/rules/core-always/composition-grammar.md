@@ -1,4 +1,4 @@
-﻿# Composition Grammar
+# Composition Grammar
 
 ## 一句话
 
@@ -51,7 +51,7 @@
 
 此表随 case 校准持续扩展。
 
-## 校准样例
+## 用户校准样例
 
 | 组合语境 | 可用取象 | 禁止误存 |
 |---|---|---|

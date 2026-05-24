@@ -1,4 +1,4 @@
-﻿# 紫微飞星 Core 开发日志
+# 紫微飞星 Core 开发日志
 
 > 记录 issue → investigation → solution → outcome
 > 回滚参考: `.claude/backup/` 存有关键版本快照
@@ -9,7 +9,7 @@
 
 ### ISSUE-001: v3.4 瘦身后 Z03 产出质量断崖式下跌
 
-**触发**: SKILL.md 从 v3.3 (1168行) 瘦身到 v3.4 (203行)，case-03 new session character finding 出现多个严重问题
+**触发**: SKILL.md 从 v3.3 (1168行) 瘦身到 v3.4 (203行)，Z03-kico new session character finding 出现多个严重问题
 
 **症状**:
 - 生年四化完全未分析（来因宫=年干"不当后天交易"被误读为"不提生年四化"）

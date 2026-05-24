@@ -1,4 +1,4 @@
-﻿---
+---
 name: ziwei-finding-audit
 description: 紫微斗数飞星派 finding 质量审计（检察官模式）。Stage 2 finding 产出后执行。A层程序合规 + B层内容质量，输出 PASS/FAIL 审计报告。审计只报告问题+标严重度，不解释为什么可以放过——放不放过是 用户的决定。Use when user says '审计 finding'、'quality check'、'检查质量' 或 Stage 2 finding 完成后。
 ---
@@ -65,6 +65,8 @@ description: 紫微斗数飞星派 finding 质量审计（检察官模式）。S
 - [ ] star deep 已读 (太极主星+化星) — **作为 Primary 证据的星必须有 deep**
 - [ ] flow deep 已读 (飞四化落宫+照宫)
 - [ ] wtz addon 已加载 (太极+对宫+落宫有小星时)
+- [ ] 小星跨宫成对检查 (三台↔八座、龙池↔凤阁等须对宫/同宫才算成对；成对则读 wtz combo deep + 走 composition-grammar 场景合成)
+- [ ] 小星系统列举 (每条 finding 的 Phase B 列出涉及宫位的关键小星 + wtz 信号标注)
 - [ ] 每条 finding 有 source refs (RC-ID)
 - [ ] 无 source 标了 gap
 
@@ -108,7 +110,7 @@ description: 紫微斗数飞星派 finding 质量审计（检察官模式）。S
 ### B4. Confidence vs Deep 一致性 (A2 的加强版)
 
 - [ ] high confidence finding 是否全部有对应 deep card 已读？有任何一条 high + deep 未读 = BLOCKER
-- [ ] finding 声称"短卡已足够" = 自动标 WARNING (审计不判断够不够，让用户看)
+- [ ] finding 声称"短卡已足够" = 自动标 WARNING (审计不判断够不够，让 用户看)
 
 ### B5. 四化取象宫象合参
 
@@ -139,6 +141,18 @@ description: 紫微斗数飞星派 finding 质量审计（检察官模式）。S
 | 全部通过 | PASS |
 
 ⚠️ **PASS_WITH_WARNINGS 不等于"可以不管"。** 每条 WARNING 都需要 用户确认是否接受。
+
+---
+
+## 常见失误参照
+
+审计完 A+B 双层后, 对照 `common-mistakes.md` 扫一遍已知 pattern:
+- M-A2-01~04: 取象逻辑错误(落宫/照宫双层、夫官互通、忌入六内主得、宫职/六内双层)
+- M-A3-01~02: Deep/Source 遗漏(小星成对只标不读、star deep 替代未标注)
+- M-A4-01~02: Phase C/D 流程遗漏(§0 缺失、入/照/冲不全)
+- M-B1-01~03: 内容质量(confidence vs deep、忌汇聚结构必然、龙池凤阁误判)
+
+命中已知 pattern → 直接标 WARNING/BLOCKER + 引用 M-ID。
 
 ---
 

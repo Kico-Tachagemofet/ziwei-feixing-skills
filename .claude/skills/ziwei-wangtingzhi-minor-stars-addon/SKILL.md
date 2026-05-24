@@ -1,4 +1,4 @@
-﻿---
+---
 name: ziwei-wangtingzhi-minor-stars-addon
 description: 王亭之《安星法及推断实例》小星 addon sibling。Use with ziwei-feixing-core-v2 when 紫微斗数 analysis needs 辅曜、佐曜、煞曜、空劫、桃花、文曜、科名诸曜、流曜、安星法校验、成对/单星/杂曜组合 signals. Provides short cards and deep cards for minor-star signal extraction; does not replace the main Xu Quanren flying-star framework.
 metadata:

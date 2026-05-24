@@ -1,4 +1,4 @@
-﻿# Provenance Policy
+# Provenance Policy
 
 ## 体系位置
 
@@ -29,6 +29,6 @@
 3. 小星信号与飞化结构冲突：标 `conflict_note`，以飞化结构为主。
 4. 只有小星无结构：不产断语，只列待核。
 
-## 校准
+## 用户校准
 
 若用户提供断事级校准，标 `[kico-calibration]`，并记录成“组合语境规则”，不要写成单星本义。

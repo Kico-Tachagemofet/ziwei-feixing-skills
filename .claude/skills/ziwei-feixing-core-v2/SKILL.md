@@ -40,7 +40,7 @@ Finding 不能当思考单位，只能当输出单位。
 | **Tier 4 deep** | **Stage 2 进入即加载** | 太极点相关宫位 combo/star/flow deep = 必读项 |
 | WTZ addon | Stage 2 有小星时 | 太极+对宫+落宫小星→wtz 短+deep |
 
-Source-cards 路径: `E:\My Grimoire\Codex\紫微斗数\source-cards\`
+Source-cards 路径: `source-cards/` (repo-relative; publish 仓库已含完整 source-cards 树)
 
 ### Tier 1 core-always 必读文件
 

@@ -1,4 +1,4 @@
-﻿# Topic Lens Reference: 性格/气质 (Character)
+# Topic Lens Reference: 性格/气质 (Character)
 
 > Calibrated: 2026-05-23
 > Source: Z01/Z03 复盘 + 架构校准

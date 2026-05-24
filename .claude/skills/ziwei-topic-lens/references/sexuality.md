@@ -1,7 +1,7 @@
-﻿# Topic Lens Reference: 性生活 / 性偏好 / 性吸引力
+# Topic Lens Reference: 性生活 / 性偏好 / 性吸引力
 
 > Calibrated: 2026-05-22
-> Source: 校准 (多太极合参型)
+> Source: 用户校准 (多太极合参型)
 
 ## Topic Definition
 
