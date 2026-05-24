@@ -1,6 +1,6 @@
-﻿---
+---
 name: ziwei-reader
-description: 紫微斗数命盘结构化 + 审计 + subject-context 隔离。把原始命盘（文墨天机导出/截图/手动输入）转成 chart-stage1.md 结构化数据，做完整性审计（含 timing verdict），隔离盘主背景信息。Pipeline 第一步——跑完 reader 后进 Stage 1.5 全盘结构分析（ziwei-feixing-core-v2 structural mode）。Use when user provides raw chart data and says '排盘'、'结构化'、'Stage 1'、'reader 跑一下'。
+description: 紫微斗数命盘结构化 + 审计 + subject-context 隔离。把原始命盘（文墨天机导出/截图/手动输入）转成 chart-stage1.md 结构化数据，做完整性审计（含 timing verdict），隔离盘主背景信息。Pipeline 第一步——跑完 reader 后进 Stage 1.5 全盘结构分析（ziwei-feixing-core-v2 structural mode）。Use when 用户 provides raw chart data and says '排盘'、'结构化'、'Stage 1'、'reader 跑一下'。
 ---
 
 # 紫微斗数 Reader Skill

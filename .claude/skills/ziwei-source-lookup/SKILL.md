@@ -1,4 +1,4 @@
-﻿---
+---
 name: ziwei-source-lookup
 description: 紫微斗数 source-loader。v2.1 起短卡已开局全加载，本 skill 收窄为 deep 决策 + coverage audit + extractions fallback。Use when chart-facts.yaml ready and pipeline 进到 Stage 2b。不做断语，只提供证据。
 ---
@@ -71,7 +71,7 @@ source-cards 目录结构见 `core-always/source-router.md`。
 
 source-cards 无覆盖时，回退搜索 extractions/ 原始蒸馏:
 ```powershell
-rg -n "<keyword>" "<YOUR_EXTRACTIONS_PATH>"
+rg -n "<keyword>" "<repo-root>/extractions" (or source-cards/ in publish)
 ```
 
 ## 输出
