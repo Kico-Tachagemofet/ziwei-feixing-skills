@@ -1,6 +1,6 @@
 ---
 name: ziwei-finding-audit
-description: 紫微斗数飞星派 finding/composition/render 质量审计（检察官模式）。Stage 2 finding / Stage 3 composition / Stage 4 render 产出后执行。三层 A+B+R 审计输出 PASS/FAIL 报告。审计只报告问题+标严重度，不解释为什么可以放过——放不放过是 用户 的决定。Use when 用户 says '审计 finding'、'audit composition'、'audit render'、'quality check'、'检查质量' 或 Stage 2/3/4 产出后。
+description: 紫微斗数飞星派 finding/composition/render 质量审计（检察官模式）。Stage 2 finding / Stage 3 composition / Stage 4 render 产出后执行。三层 A+B+R 审计输出 PASS/FAIL 报告。审计只报告问题+标严重度，不解释为什么可以放过——放不放过是 Kico 的决定。Use when Kico says '审计 finding'、'audit composition'、'audit render'、'quality check'、'检查质量' 或 Stage 2/3/4 产出后。
 ---
 
 # 紫微斗数 Finding/Composition/Render 质量审计
@@ -22,7 +22,7 @@ description: 紫微斗数飞星派 finding/composition/render 质量审计（检
 - **禁止**写"但这不影响判断"、"短卡已足够"、"不构成误判风险"、"在当前范围内成立"
 - **禁止**替 finding 做辩护、找理由、重新解释规则边界
 - 发现问题 → 写问题是什么 + 违反了哪条规则 + 建议修正动作。到此为止。
-- 问题严不严重由 用户 判断，不由审计判断
+- 问题严不严重由 Kico 判断，不由审计判断
 
 ## 职责
 
@@ -80,7 +80,7 @@ description: 紫微斗数飞星派 finding/composition/render 质量审计（检
 | 条件 | Verdict |
 |---|---|
 | R1/R2/R3/R7/R12 任一 BLOCKER | **FAIL** → 立即重写该 topic |
-| 仅 WARNING | PASS_WITH_WARNINGS → 用户 决定是否接受 |
+| 仅 WARNING | PASS_WITH_WARNINGS → Kico 决定是否接受 |
 | 全过 | PASS |
 
 ⚠️ **Render audit 闭环纪律 (与 Stage 2/3 audit 一致)**: FAIL 必修, 不允许 force ship。每 topic 写完跑 audit, 不达标重写, 再 audit 直到 PASS。
@@ -164,7 +164,7 @@ description: 紫微斗数飞星派 finding/composition/render 质量审计（检
 ### B4. Confidence vs Deep 一致性 (A2 的加强版)
 
 - [ ] high confidence finding 是否全部有对应 deep card 已读？有任何一条 high + deep 未读 = BLOCKER
-- [ ] finding 声称"短卡已足够" = 自动标 WARNING (审计不判断够不够，让 用户 看)
+- [ ] finding 声称"短卡已足够" = 自动标 WARNING (审计不判断够不够，让 Kico 看)
 
 ### B5. 四化取象宫象合参
 
@@ -194,7 +194,7 @@ description: 紫微斗数飞星派 finding/composition/render 质量审计（检
 | 只有 WARNING，无 BLOCKER | PASS_WITH_WARNINGS |
 | 全部通过 | PASS |
 
-⚠️ **PASS_WITH_WARNINGS 不等于"可以不管"。** 每条 WARNING 都需要 用户 确认是否接受。
+⚠️ **PASS_WITH_WARNINGS 不等于"可以不管"。** 每条 WARNING 都需要 Kico 确认是否接受。
 
 ---
 
@@ -207,7 +207,7 @@ description: 紫微斗数飞星派 finding/composition/render 质量审计（检
 1. Audit 输出 FAIL + BLOCKER 清单
 2. 主 agent 按清单逐条修 (读 deep / 加 §0 / 改框架 / 补 IK / 等)
 3. 修完**再调 audit skill 重审**, 不依赖记忆/感觉
-4. PASS 或 PASS_WITH_WARNINGS (用户 接受) 后再进下一 stage
+4. PASS 或 PASS_WITH_WARNINGS (Kico 接受) 后再进下一 stage
 
 ### 反例 (禁止)
 

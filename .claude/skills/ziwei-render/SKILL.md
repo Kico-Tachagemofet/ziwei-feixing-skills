@@ -181,7 +181,7 @@ source gap 的地方诚实保留模糊，不伪装确定。
 
 #### 旧格式（已弃用）
 
-~~2-4段压缩 + 底部 `<details>` 折叠技术依据~~ — Z01-astarion 首次渲染翻车：5 个 finding 压成 4 段，丢了辅星/小星/碰撞/因果組细节。用户 反馈"不够详细，还不如 finding 详细""没做引用"。重写对齐希腊化格式后 用户 确认"这个输出才是读了就知道在说的是 Astarion"。
+~~2-4段压缩 + 底部 `<details>` 折叠技术依据~~ — Z01-astarion 首次渲染翻车：5 个 finding 压成 4 段，丢了辅星/小星/碰撞/因果組细节。Kico 反馈"不够详细，还不如 finding 详细""没做引用"。重写对齐希腊化格式后 Kico 确认"这个输出才是读了就知道在说的是 Astarion"。
 
 #### 星性画面做骨架（v1.3 新增 — Z04-anonymous 翻车修复）
 
@@ -222,7 +222,7 @@ Subject-context.md 在 render 阶段可读, 但有严格用法:
 **Stage 2 finding 整合的 subject-context informed sections**:
 - composition.md / topic findings 里如有 `✨ subject-context informed` mark 的段落 → 已经在 Stage 2/3 完成了"subject context 反查盘面 + N 线共振"整合
 - Render 这些段落时 **保留共振结构** (X 线汇聚清单/RC 对照表) 但 **strip 来源标注**
-- 不写"用户 提供的 subject-context...", 不写"经命主验证...", 改为客观描述 (e.g., "命主已知人生事件 + 盘面盲推结构 100% 命中验证" 或直接陈述)
+- 不写"Kico 提供的 subject-context...", 不写"经命主验证...", 改为客观描述 (e.g., "命主已知人生事件 + 盘面盲推结构 100% 命中验证" 或直接陈述)
 
 **Stage 4 render 时新读到的 subject-context**:
 - 仅用于校准措辞精度 (e.g., 调整指代/性别/年龄表述)
