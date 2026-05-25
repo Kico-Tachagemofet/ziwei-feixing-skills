@@ -12,6 +12,16 @@
 
 **核心认识论**: 象核 (structure kernel) 是思考单位，finding 是输出单位。先建交易图，再建象核，最后从象核产断语。不做 per-chain finding。
 
+## ⚠️ 关于术语的说明
+
+本 skill 系统在工程实现中创造了若干便于 LLM 理解和复现的命名 (如 "Layer 1/2/3 优先级"、"象核五点"、"主锚/Layer 1 outcome/用"、"composition 8 段标准结构"、"R 层 audit checklist" 等)。**这些是工程命名, 不是紫微斗数体系原本的术语**, 是为了让 LLM 在多 stage pipeline 中能稳定复现判读流程。
+
+真正的紫微传统术语 (生年四化, 飞宫四化, 自化, 视同自化, 来因宫, 体之体, 双象六组, 理则三/四/五, 等) 仍按许铨仁原书。如果你在传统紫微文献里找不到本 repo 用的某个术语, 大概率是 LLM-friendly 工程命名。
+
+判断方法:
+- 古名传承 (生年四化/飞宫/自化等) = 紫微原始术语, **不可改**
+- 现代命名带"Layer / Stage / Kernel / Index / Audit / Pipeline / Schema" 等英文/工程化色彩 = 工程命名, **可重命名但要全局统一**
+
 ## Pipeline
 
 ```
@@ -66,10 +76,11 @@ Audit R:    Stage 4 render audit ─── ziwei-finding-audit (R1-R12 量化基
 
 `ziwei-warm` 一次性加载 **68 个 deep card** 到 session context（包括 24 主星+辅星、13 宫位、22 王亭之小星、7 飞星骨架、2 render 规则）。
 
-**实测能 handle 的模型**:
-- ✅ **1m token 模型 (Opus 4.6 等)** — 实测可以提升表现，star/combo 原书定性进入 context 后 render 不再是 cookbook 级
-- ❌ **200k 模型** — 大概率完全 handle 不了（68 个 deep card 全部加载会爆 context 或严重压缩，反而劣化）
-- ❓ **其他模型 (Sonnet/Haiku 等)** — 未实测，自行评估
+**模型兼容性**:
+- ✅ **1m token 模型 (Opus 4.6 等)** — **实测**可以提升表现，star/combo 原书定性进入 context 后 render 不再是 cookbook 级
+- ❌ **200k 模型** — 大概率 handle 不了（68 个 deep card 全部加载会爆 context 或被严重压缩，反而劣化）
+- ❓ **未实测但可考虑**: GPT-5 / DeepSeek V4 Pro / Sonnet 等 (自测兼容性, 看 context window 和 attention 表现)
+- ✗ **Gemini 不在适配范围内** (skill 设计未针对 Google 模型适配, 不做测试)
 
 **注意**: 即使在 1m 模型上，目前很多 pipeline 表现仍然受限于模型的注意力分配和算力调度，而非规则本身。`ziwei-warm` 是缓解措施之一（解决"LLM 偷懒不读 deep card"问题），但不是万能。
 
@@ -108,7 +119,9 @@ source-cards/
 4. **用** — 实际产出（combo deep 必读）
 5. **排除误读** — 盘面反驳什么常见误读
 
-### Layer 1/2/3 宫位吉凶判读优先级 (新方法论)
+### Layer 1/2/3 宫位吉凶判读优先级 (方法论加固)
+
+⚠️ **澄清**: 这不是"新方法论", 是飞星派**原本就应该这样判**, 只是过去没写清楚, 现在明确写下。许铨仁体系里"静动合参"+"飞宫四化为用"等核心原则一直都包含这层意思——本规则只是把判读优先级显式化。
 
 **后天交易为第一要素，先天象不独立判吉凶。**
 
@@ -126,7 +139,7 @@ source-cards/
 
 **"凶锚/吉锚" 是 scope-dependent Layer 1 outcome 标签，不是 static 属性**。同一条飞化在不同 topic 角色不同（如夫忌冲子女在 partnership=配偶子女缘薄，在 property=background）。
 
-**旧框架已消解**: "凶锚宫飞出的禄权科先判代价/逃生口/转化/补偿" 在新规则下消解——飞化对命有禄科照入的宫从一开始就不是凶宫。
+**旧框架已消解**: "凶锚宫飞出的禄权科先判代价/逃生口/转化/补偿" 在本规则下消解——飞化对命有禄科照入的宫从一开始就不是凶宫。（那套 ad-hoc 框架是在挽救"被错误标为 static 凶宫但实际飞化吉象"的情况, 本规则直接 fix 标签问题, 不需要"代价/转化/补偿"去解释吉象。）
 
 ### 先天体 (Innate Body)
 
